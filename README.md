@@ -13,3 +13,5 @@ Bu repo içerisinde öğrenirken oluşturduğum dosyalara yer veriyorum.
 2. `src` klasöründeki `style.css` dosyasında üç parça olarak `tailwind css` eklenmiştir.
 3. `package.json` içerisinde bir `npm script` bulunmaktadır. Bu script'i kullanabilmek için `npm run build-css` komutunu kullanmanız yeterli olacaktır.
 4. `public` klasörünü incelediğinizde `tailwind css` kodlarının `style.css` dosyasına çıkartıldığını göreceksiniz.
+
+> Taildwind için yapılandırma dosyası bildirerek özel tanımlamalar yapabilirsiniz. Bu işlem için `npx tailwindcss init --full` komutunu kullanabilirsiniz. Bu sayede `tailwind.config.js` adında varsayılan tanımlamaları içeren dosya ana çalışma dizinimize oluşturulacaktır. Burada değiştirmek istediğiniz varsayılan değerleri değiştirebilirsiniz.
