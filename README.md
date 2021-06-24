@@ -48,3 +48,19 @@ Yukarıdaki kodlar bir `card` bileşenin değişmeyen kemik yapısı olsun. Bura
     @apply bg-white rounded overflow-hidden shadow-md relative;
 }
 ```
+
+## Production
+Sadece kullanmış olduğunuz sınıfları dışarıya aktarabilmek için bazı eklemelerin yapılması gerekmektedir.
+
+1. `tailwind.config.js` dosyasında `purge` dizisini aşağıdaki gibi ayarlayın. Burada dikkat edilmesi gereken şey `tailwindcss` kullandığınız yerlerde (javascript dosyası da olabilir) ilgili klasörleri ve dosyaları bildirmeniz gerekmektedir.
+```javascript
+    purge: [
+      './public/**/*.html',
+      './public/**/*.js',
+    ],
+```
+2. `package.json` dosyasında yeni bir script oluşturmamız gerekmektedir. Aşağıdaki script `Windows` bilgisayarlar için oluşturulmuştur. `Linux` ve `MAC` cihazlarda `SET` anahtar kelimesine ihtiyaç yoktur. Burada ufak bir ayrıntı gibi gözüksede production kelimesinden sonra gelen `&` işareti iki script'i birleştirmek için kullanılmaktadır. Ancak ilk script kullanıldıktan sonra boşluk bırakmadan `&` işareti kullanılmalıdır.
+```javascript
+    "build-prod": "SET NODE_ENV=production& npx tailwindcss -i ./src/styles.css -o ./public/styles.css",
+```
+3. Terminal penceresinde ana dizindeyken `npm run build-prod` komutunu çalıştırdığınız zaman `public/styles.css` dosyasıda bu proje için `900 satır` civarında bir çıktı alacaksınız. Eğer `npm run build-css` komutunu kullanırsanız `188000 satır` çıktı alacaksınız yani kütüphanenin tamamı çıkartılacaktır. Tabi kendi oluşturduğunuz sınıflarda buraya dahil edilecektir. Önemli olan girdi dosyası olarak neyi gösterdiğinizdir. Geri kalan işlemler `tailwind.config.js` dosyasındaki ayarlara ve varsayılan değerlere göre otomatik olarak gerçekleştirilmektedir. Hatta `postcss.config.js` dosyasındaki eklentiler ve ayarlarda burada rol oynamaktadır. 
